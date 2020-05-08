@@ -64,6 +64,11 @@
 			<artifactId>ms-generic-crud</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.mservice.commons.alumnos</groupId>
+			<artifactId>ms-commons-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
