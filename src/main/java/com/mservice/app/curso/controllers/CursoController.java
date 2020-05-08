@@ -6,10 +6,7 @@ import com.mservice.commons.alumnos.models.entity.Alumno;
 import com.mservice.generic.controllers.GenericController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,4 +57,13 @@ public class CursoController extends GenericController<Curso, ICursoService> {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(editCurso));
     }
+
+    @GetMapping("/alumno/{id}")
+    public ResponseEntity<?> findByAlumnoId(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.findCursoByAlumnoId(id));
+    }
+
 }
+
+
+
