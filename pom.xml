@@ -64,16 +64,16 @@
 			<artifactId>ms-generic-crud</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.mservice.commons.alumnos</groupId>
 			<artifactId>ms-commons-alumnos</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.mservice.commons.alumnos</groupId>
-			<artifactId>ms-commons-alumnos</artifactId>
+			<groupId>com.mservice.commons.examenes</groupId>
+			<artifactId>ms-commons-examenes</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
