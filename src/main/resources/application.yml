@@ -11,7 +11,10 @@ eureka:
 spring:
   application:
     name: ms-cursos
-
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
   datasource:
     url: jdbc:mysql://localhost:3307/db_microservicios_examenes
     username: root
@@ -23,10 +26,12 @@ spring:
     locale: es_MX
 
   jpa:
-    generate-ddl: true
+    generate-ddl: false
 
   logging:
     level:
       org:
         hibernate:
           SQL: debug
+
+config.balanceador.test: ${BALANCEADOR_TEST:por defecto}
