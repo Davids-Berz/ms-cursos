@@ -7,6 +7,8 @@ import com.mservice.commons.alumnos.models.entity.Alumno;
 import com.mservice.commons.examenes.models.entity.Examen;
 import com.mservice.generic.controllers.GenericController;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,46 @@ public class CursoController extends GenericController<Curso, ICursoService> {
         response.put("balanceador", balanceadorTest);
         response.put("cursos",service.findAll());
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarPorId(@PathVariable Long id){
+
+        Optional<Curso> dbEntity = service.findById(id);
+
+        if (dbEntity.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        Curso curso = dbEntity.get();
+
+        if(!curso.getLstAlumnos().isEmpty()){
+            List<Long> ids = curso.getCursoAlumnos().stream().map(cursoAlumno -> {
+                return cursoAlumno.getAlumnoId();
+            }).collect(Collectors.toList());
+
+            List<Alumno> lstAlumno = (List<Alumno>) service.obtenerAlumnosPorCurso(ids);
+            curso.setLstAlumnos(lstAlumno);
+        }
+
+        return ResponseEntity.ok(curso);
+    }
+
+    @Override
+    @GetMapping("/pagina")
+    public ResponseEntity<?> listar(Pageable pageable) {
+
+        Page<Curso> lstCursos = service.findAll(pageable).map(curso -> {
+            curso.getCursoAlumnos().forEach(cursoAlumno -> {
+                Alumno alumno = new Alumno();
+                alumno.setId(cursoAlumno.getAlumnoId());
+                curso.addAlumno(alumno);
+            });
+            return curso;
+        });
+
+        return ResponseEntity.ok(lstCursos);
     }
 
     @Override
