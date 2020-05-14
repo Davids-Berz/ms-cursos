@@ -10,5 +10,6 @@ public interface ICursoService extends IGenericService<Curso> {
     Curso findCursoByAlumnoId(Long id);
     Iterable<Long> obtenerExamenesIdConRespuestaAlumno(Long alumnoId);
     Iterable<Alumno> obtenerAlumnosPorCurso(@RequestParam Iterable<Long> ids);
+    void deleteCursoAlumnoByAlumnoId(Long id);
 
 }

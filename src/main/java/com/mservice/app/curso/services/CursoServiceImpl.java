@@ -34,4 +34,10 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, ICursoRepository
     public Iterable<Alumno> obtenerAlumnosPorCurso(Iterable<Long> ids) {
         return clientAlumno.obtenerAlumnosPorCurso(ids);
     }
+
+    @Override
+    @Transactional
+    public void deleteCursoAlumnoByAlumnoId(Long id) {
+        repository.deleteCursoAlumnoByAlumnoId(id);
+    }
 }

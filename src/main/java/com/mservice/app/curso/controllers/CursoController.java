@@ -188,6 +188,11 @@ public class CursoController extends GenericController<Curso, ICursoService> {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(editCurso));
     }
 
+    @DeleteMapping("/eliminar-alumno/{id}")
+    public ResponseEntity<?> deleteCursoAlumnoByAlumnoId(@PathVariable Long id){
+        service.deleteCursoAlumnoByAlumnoId(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
